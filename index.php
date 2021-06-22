@@ -26,6 +26,15 @@
     <meta name="robots" content="index,follow">
     <meta name="description" content="Как вернуть VPN в браузере Opera и Opera GX">
     <meta name="keywords" content="opera, opera gx, vpn, opera vpn, opera gx vpn, возвращение vpn opera, вернуть vpn opera">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/apple-touch-icon.f41fd1c7b8eb.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/favicon-32x32.d80e4bdc6a9f.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/favicon-16x16.a0ae29f84c8a.png">
+    <link rel="manifest" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/site.3f73f08fba75.webmanifest">
+    <link rel="mask-icon" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/safari-pinned-tab.c03376804cdc.svg" color="#ff0a21">
+    <link rel="shortcut icon" href="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/favicon.12c955371a4b.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/browserconfig.f5848516ccd3.xml">
+    <meta name="theme-color" content="#ffffff">
     <title><?= $title ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
