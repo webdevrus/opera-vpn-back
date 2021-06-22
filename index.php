@@ -176,7 +176,7 @@
     <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <a href="https://github.com/webdevrus" target="_blank" class="d-flex align-items-center">
+                <a href="https://github.com/webdevrus/opera-vpn-back" target="_blank" class="d-flex align-items-center">
                     <div class="github mr-2"></div>
                     <span class="text-muted">GitHub</span>
                 </a>
