@@ -100,7 +100,7 @@ final class Redaction
      */
     public function download(): void
     {
-        header('Content-Type: application/force-download');
+        header('Content-Type: application/zip');
         header('Content-Disposition: inline; filename="' . $this->archive . '"');
         readfile($this->getArchive());
 
