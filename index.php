@@ -37,7 +37,8 @@
     <meta name="msapplication-config" content="https://cdn-production-opera-website.operacdn.com/staticfiles/assets/images/favicon/browserconfig.f5848516ccd3.xml">
     <meta name="theme-color" content="#ffffff">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
         .opera {
             width: 5rem;
@@ -118,19 +119,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="display-4 mb-5 d-flex flex-column flex-md-row align-items-center">
-                        <div class="opera mr-4"></div>
+                        <div class="opera me-4"></div>
                         <?= $title ?>
                     </div>
                 </div>
             </div>
             <div class="row mt-5">
+                <div class="col-md-12 mb-4">
+                    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert" id="windows">
+                        Инструкция для пользователей <b>Windows</b>. Как в других системах — я не знаю. 🤷‍♂️
+                    </div>
+                </div>
                 <?php if ($error = session_flash('error')): ?>
                 <div class="col-md-12 mb-4">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <?= $error ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -161,11 +165,13 @@
                 </div>
                 <div class="col-md-5 offset-md-1">
                     <form action="<?= action() ?>" method="POST" enctype="multipart/form-data" class="p-4 form-background rounded">
-                        <div class="custom-file">
+                        <input name="files[]" type="file" id="files" multiple class="form-control">
+                        <div id="filesInvalidFeedback" class="invalid-feedback"></div>
+                        <!-- <div class="custom-file">
                             <input type="file" name="files[]" class="custom-file-input" id="files" multiple>
                             <label class="custom-file-label" for="files">Загрузите файлы...</label>
                             <div id="filesInvalidFeedback" class="invalid-feedback"></div>
-                        </div>
+                        </div> -->
                         <div class="d-flex justify-content-end mt-4">
                             <button type="submit" class="btn btn-success" id="submitFiles" disabled>Загрузить</button>
                         </div>
@@ -178,13 +184,50 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <a href="https://github.com/webdevrus/opera-vpn-back" target="_blank" class="d-flex align-items-center">
-                    <div class="github mr-2"></div>
+                    <div class="github me-2"></div>
                     <span class="text-muted">GitHub</span>
                 </a>
                 <a href="https://xn----8sbabdbvtlu6btc5a9e.xn--p1ai/" target="_blank" class="developer"></a>
             </div>
         </div>
     </footer>
+    <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">⚠ Внимание</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Как выяснилось, данный способ может работать не у всех.</p>
+                <p>Я взял инструкцию из открытых источников и сделал под неё сервис для удобства.</p>
+                <p>Если у вас не заработало, пожалуйста, ищите альтернативные варианты.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="agree">Ясно, понятно!</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let message = document.getElementById('windows');
+        let isWin = /win/.test(window.navigator.platform.toLocaleLowerCase());
+        if (!isWin) {
+            message.classList.remove('d-none');
+        }
+
+        let modal = new bootstrap.Modal(document.getElementById('info'));
+        let agree = document.getElementById('agree');
+        let isAgree = JSON.parse(localStorage.getItem('agree'));
+
+        if (!isAgree) {
+            modal.show();
+            agree.addEventListener('click', () => {
+                localStorage.setItem('agree', true);
+                modal.hide();
+            });
+        }
+    </script>
     <script>
         document.getElementById('files').addEventListener('change', function (e) {
             let input = e.target;
