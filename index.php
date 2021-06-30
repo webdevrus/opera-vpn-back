@@ -12,6 +12,7 @@
         try {
             $redaction = new Redaction($_FILES);
             $redaction->validate($valid)->generate()->download();
+            exit;
         } catch (\Exception $e) {
             $_SESSION['_flash']['error'] = $e->getMessage();
         }
