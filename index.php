@@ -231,7 +231,6 @@
     <script>
         document.getElementById('files').addEventListener('change', function (e) {
             let input = e.target;
-            let label = document.querySelector(`label[for="${ e.target.id }"]`);
             let error = document.getElementById('filesInvalidFeedback');
             let files = e.target.files;
             let button = document.getElementById('submitFiles');
@@ -256,12 +255,10 @@
                 if (files.length !== 2 || !validate(files)) {
                     throw new Error('Выберите файлы, указанные в описании');
                 }
-                label.innerText = 'Загружено';
                 button.removeAttribute('disabled');
             } catch (exception) {
                 input.classList.add('is-invalid');
                 error.innerText = exception.message;
-                label.innerText = 'Загрузите файлы...';
                 button.setAttribute('disabled', true);
             }
 
